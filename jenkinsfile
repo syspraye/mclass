@@ -23,6 +23,7 @@ pipeline {
  checkout scm
  }
  }
+ 
  stage('Maven Build') {
  steps {
  // 테스트는 건너뛰고 Maven 빌드
@@ -30,7 +31,7 @@ pipeline {
  // sh 'echo Hello' : 리눅스 명령어 실행
  }
  }
-6. Jenkins를 활용한 CI/CD 환경 구성 - 운영 서버(원격 서버) 구성 및 10
+
  stage('Prepare Jar') {
  steps {
  // 빌드 결과물인 JAR 파일을 지정한 이름(app.jar)으로 복사
