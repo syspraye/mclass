@@ -1,10 +1,12 @@
 pipeline {
- agent any // 어떤 에이전트(실행 서버)에서든 실행 가능
+ agent any  
  tools {
- maven 'maven 3.9.11' // Jenkins에 등록된 Maven 3.9.11을 사용
+ maven 'maven 3.9.11'  
  }
+
+
  environment {
- // 배포에 필요한 변수 설정
+  
  DOCKER_IMAGE = "demo-app"  
  CONTAINER_NAME = "springboot-container" 
  JAR_FILE_NAME = "app.jar" 
@@ -14,8 +16,10 @@ pipeline {
     REMOTE_HOST = "43.202.247.76"
     REMOTE_DIR = "/home/ec2-user/deploy"
     SSH_CREDENTIALS_ID = "7b0db303-54dd-44a3-8d2e-bf99133d810f"
-
  }
+
+
+
  stages {
  stage('Git Checkout') {
  steps { 
@@ -23,22 +27,23 @@ pipeline {
  checkout scm
  }
  }
+ }
 
  stage('Maven Build') {
  steps {
- // 테스트는 건너뛰고 Maven 빌드
+ 
  sh 'mvn clean package -DskipTests'
- // sh 'echo Hello' : 리눅스 명령어 실행
+  
  }
  }
 
  stage('Prepare Jar') {
  steps {
- // 빌드 결과물인 JAR 파일을 지정한 이름(app.jar)으로 복사
+  
  sh 'cp target/demo-0.0.1-SNAPSHOT.jar ${JAR_FILE_NAME}'
  }
  }
 
  }
-}
+
 
