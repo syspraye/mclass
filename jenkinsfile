@@ -5,10 +5,10 @@ pipeline {
  }
  environment {
  // 배포에 필요한 변수 설정
- DOCKER_IMAGE = "demo-app" // 도커 이미지 이름
- CONTAINER_NAME = "springboot-container" // 도커 컨테이너 이름
- JAR_FILE_NAME = "app.jar" // 복사할 JAR 파일 이름
- PORT = "8081" // 컨테이너와 연결할 포트
+ DOCKER_IMAGE = "demo-app"  
+ CONTAINER_NAME = "springboot-container" 
+ JAR_FILE_NAME = "app.jar" 
+ PORT = "8081" 
 
    REMOTE_USER = "ec2-user"
     REMOTE_HOST = "43.202.247.76"
@@ -18,12 +18,12 @@ pipeline {
  }
  stages {
  stage('Git Checkout') {
- steps { // step : stage 안에서 실행할 실제 명령어
- // Jenkins가 연결된 Git 저장소에서 최신 코드 체크아웃
+ steps { 
+ 
  checkout scm
  }
  }
- 
+
  stage('Maven Build') {
  steps {
  // 테스트는 건너뛰고 Maven 빌드
@@ -39,4 +39,6 @@ pipeline {
  }
  }
 
+ }
 }
+
